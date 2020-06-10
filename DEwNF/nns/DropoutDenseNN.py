@@ -3,22 +3,6 @@ import torch.nn as nn
 
 
 class DropoutDenseNN(nn.Module):
-    """
-    An implementation of a simple dense feedforward network, for use in, e.g., some conditional flows such as
-    :class:`pyro.distributions.transforms.ConditionalPlanarFlow`.
-    Example usage:
-    :param input_dim: the dimensionality of the input
-    :type input_dim: int
-    :param hidden_dims: the dimensionality of the hidden units per layer
-    :type hidden_dims: list[int]
-    :param param_dims: shape the output into parameters of dimension (p_n,) for p_n in param_dims
-        when p_n > 1 and dimension () when p_n == 1. The default is [1, 1], i.e. output two parameters of dimension ().
-    :type param_dims: list[int]
-    :param nonlinearity: The nonlinearity to use in the feedforward network such as torch.nn.ReLU(). Note that no
-        nonlinearity is applied to the final network output, so the output is an unbounded real number.
-    :type nonlinearity: torch.nn.module
-    """
-
     def __init__(
             self,
             input_dim,
@@ -52,9 +36,6 @@ class DropoutDenseNN(nn.Module):
         self.f = nonlinearity
 
     def forward(self, x):
-        """
-        The forward method
-        """
         h = x
         for layer in self.layers[:-1]:
             h = self.f(layer(h))

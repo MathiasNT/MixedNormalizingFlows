@@ -31,14 +31,6 @@ class ConditionedAffineCoupling2(TransformModule):
         self.log_scale_max_clip = log_scale_max_clip
 
     def _call(self, x):
-        """
-        :param x: the input into the bijection
-        :type x: torch.Tensor
-
-        Invokes the bijection x=>y; in the prototypical context of a
-        :class:`~pyro.distributions.TransformedDistribution` `x` is a sample from the base distribution (or the output
-        of a previous transform)
-        """
         x1, x2 = x[..., :self.split_dim], x[..., self.split_dim:]
         rich_context = self.rich_context.expand(x1.shape[0], -1) # Expand the context to have same dimension as data (only used when same context for all data points)
         x_cov = torch.cat((x1, rich_context), dim = 1) # Concat data and context
@@ -51,12 +43,6 @@ class ConditionedAffineCoupling2(TransformModule):
         return torch.cat([y1, y2], dim=-1)
 
     def _inverse(self, y):
-        """
-        :param y: the output of the bijection
-        :type y: torch.Tensor
-
-        Inverts y => x. Uses a previously cached inverse if available, otherwise performs the inversion afresh.
-        """
         y1, y2 = y[..., :self.split_dim], y[..., self.split_dim:]
         x1 = y1
 
@@ -71,9 +57,6 @@ class ConditionedAffineCoupling2(TransformModule):
         return torch.cat([x1, x2], dim=-1)
 
     def log_abs_det_jacobian(self, x, y):
-        """
-        Calculates the elementwise determinant of the log jacobian
-        """
         x_old, y_old = self._cached_x_y
         if self._cached_log_scale is not None and x is x_old and y is y_old:
             log_scale = self._cached_log_scale

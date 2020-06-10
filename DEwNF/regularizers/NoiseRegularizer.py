@@ -54,5 +54,4 @@ def no_regularization_schedule(n, d, sigma):
 
 
 def constant_regularization_schedule(n ,d, sigma):
-    # I am aware this is a hacky implementation but it worked the best with my notebooks
     return sigma

@@ -61,9 +61,6 @@ class RotatingTwoMoonsConditionalSampler(object):
         return x_tf.type(torch.FloatTensor), torch.from_numpy(y), theta, trans
 
     def make_plot(self, n_samples=100, theta=torch.tensor([0])):
-        """
-        Function used to make fancy plot
-        """
         x, y = self.conditioned_sample(n_samples=n_samples, theta=theta)
         fig = plt.figure()
         axe = ax = fig.gca()
@@ -75,9 +72,6 @@ class RotatingTwoMoonsConditionalSampler(object):
         return fig, axe, sp
 
     def update_plot(self, fig, axe, sp, n_samples=100, theta=torch.tensor([0])):
-        """
-        Function used to make fancy plot
-        """
         x, y = self.conditioned_sample(n_samples=n_samples, theta=theta)
         sp.set_data(x[:, 0], x[:, 1])
         fig.canvas.draw()
