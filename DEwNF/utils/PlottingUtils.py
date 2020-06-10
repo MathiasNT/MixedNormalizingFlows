@@ -3,6 +3,7 @@ import matplotlib
 import numpy as np
 import torch
 
+
 def plot_4_contexts_cond_flow(flow_dist, contexts, scaler, n_samples=256):
     assert contexts.shape[0] == 4, 'Need 4 contexts inorder to create 4 plots'
 

@@ -17,7 +17,7 @@ This repo contains code to do conditional density estimation with conditional
  
  Code for generating the synthetic data can be found in `DEwNF/samplers` and a data set of
  100,000 samples can be found in `two_moons_data`. Flows trained on this data can be found in `two_moons_models`
- and a plotting Google Colab notebook can be found in `google_colab_notebooks/synthetic_experiments/paper_two_moons_plot`
+ and a plotting Google Colab notebook can be found in `google_colab_notebooks/synthetic_experiments/paper_two_moons_plot.ipynb`
  
  A preprocessed NYC Yellow Taxi data set can be found in `nyc_data`. The preprocessing is based on https://github.com/hughsalimbeni/bayesian_benchmarks.
- 
+ Flows trained on this data can be found in `nyc_models` and a plotting Google Colab Notebook can be found in `google_colab_notebooks/nyc_experiments/path_plots_for_paper.ipynb`
